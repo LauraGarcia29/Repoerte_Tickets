@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>InfyCredit · Dashboard Tickets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1><span class="logo">∞</span>InfyCredit · Tickets</h1>
+              </div>
+      <div class="filters">
+        <div>
+          <div class="label-chip">Fecha (mes)</div>
+          <div class="select-wrap">
+            <select id="monthFilter" class="select"></select>
+          </div>
+        </div>
+        <div>
+          <div class="label-chip">Entidad</div>
+          <div class="select-wrap">
+            <select id="entityFilter" class="select">
+              <option value="__all__">Todas</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="card-header">
+          <h2>Resumen ejecutivo</h2>
+          <span class="badge" id="badgeContext">Todos los meses</span>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Tickets totales</div>
+            <div class="kpi-value" id="kpiTotal">-</div>
+            <div class="kpi-sub" id="kpiTotalTrend">vs mes anterior: n/d</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Cerrados + Resueltos</div>
+            <div class="kpi-value" id="kpiClosedResolved">-</div>
+            <div class="kpi-sub" id="kpiClosedResolvedPct">-</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Abiertos + Backlog</div>
+            <div class="kpi-value" id="kpiOpenBacklog">-</div>
+            <div class="kpi-sub" id="kpiOpenBacklogPct">-</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">En revisión + En curso</div>
+            <div class="kpi-value" id="kpiInReviewInProgress">-</div>
+            <div class="kpi-sub" id="kpiInReviewInProgressPct">-</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">No se corregirán</div>
+            <div class="kpi-value" id="kpiNoFix">-</div>
+            <div class="kpi-sub" id="kpiNoFixPct">-</div>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <div class="chart-head">
+            <span>Distribución por estado</span>
+            <span class="chart-pill" id="chartLegend">Periodo seleccionado</span>
+          </div>
+          <canvas id="statusChart"></canvas>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>Estados y responsables</h2>
+          <span class="badge">Vista rápida</span>
+        </div>
+
+        <div class="status-grid" id="statusSummary"></div>
+
+        <div class="resp-box">
+          <div class="resp-header">
+            <strong>Responsables</strong>
+            <span>Casos y promedio de días</span>
+          </div>
+          <div id="responsablesTable"></div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <label><input type="checkbox" id="onlyOpenCheckbox" /> Solo abiertos (global)</label>
+          </div>
+          <div class="table-header">
+            <div>Fecha</div>
+            <div>Entidad</div>
+            <div>Estado</div>
+            <div>Responsable</div>
+          </div>
+          <div class="table-body" id="ticketsTableBody"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <span>InfyCredit · Tickets</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
